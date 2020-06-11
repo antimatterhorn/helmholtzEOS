@@ -28,5 +28,8 @@ chop_aprox13.o : chop_aprox13.f90 *.dek
 invert_helm.o : invert_helm.f90 *.dek
 	$(fort) -c invert_helm.f90
 
+burn : chop_aprox13.o public_helm.o wrapper_aprox13.cpp
+	$(pp) -o burn wrapper_aprox13.cpp chop_aprox13.o public_helm.o -lgfortran
+
 clean :
 	rm $(WRAPPER) *.o
